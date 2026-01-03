@@ -21,7 +21,7 @@ function App() {
 
   // Timer and Celebration Logic
   useEffect(() => {
-    const startDate = new Date('2025-12-25T00:00:00').getTime()
+    const startDate = new Date('2026-01-01T00:00:00').getTime()
 
     const interval = setInterval(() => {
       const now = new Date().getTime()
