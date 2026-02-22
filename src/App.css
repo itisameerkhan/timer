@@ -1,79 +1,121 @@
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  /* This kills the scrollbars */
-  overflow: hidden; 
-  background: #0a0a0f;
-  font-family: 'Bebas Neue', sans-serif;
-}
-
-#root {
-  width: 100%;
-  height: 100vh;
-}
-
-.timer-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.app-wrapper {
   width: 100vw;
   height: 100vh;
-  background: linear-gradient(135deg, #0a0a0f 0%, #0d0d15 100%);
-  position: relative;
-  overflow: hidden; 
-}
-
-/* Fix for the confetti canvas breaking the UI */
-canvas {
-  position: absolute !important;
-  top: 0;
-  left: 0;
-  z-index: 1;
-  pointer-events: none;
-}
-
-.timer {
   display: flex;
-  gap: 40px;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 50px;
+  background-color: #000;
+  color: #fff;
   position: relative;
-  z-index: 10; /* Keeps text above confetti */
+  overflow: hidden;
 }
 
-.time-unit {
+
+
+/* Header */
+header {
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+}
+
+h1 {
+  font-size: 1rem;
+  font-weight: 400;
+  letter-spacing: 10px;
+  color: #666; /* Subtle gray */
+  margin: 0;
+  text-transform: uppercase;
+}
+
+/* Main Timer Grid */
+.timer-grid {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2vw;
+  /* Slightly shift up to balance visual weight */
+  margin-top: -5vh; 
+}
+
+.time-group {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
+  justify-content: center;
+  position: relative;
+  /* Fix the width so it doesn't jiggle when numbers change between 0 and 1 */
+  min-width: 14vw; 
 }
 
-.time-value {
-  font-size: 80px;
-  font-weight: bold;
-  color: #ffffff; /* Forced White */
-  letter-spacing: 2px;
+.number-wrapper {
+  overflow: hidden; /* For odometer effect */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 14vw; 
+}
+
+.number {
+  font-size: 10vw;
+  font-weight: 900;
   line-height: 1;
+  letter-spacing: -2px;
+  color: #fff;
+  will-change: transform, opacity;
+  /* Crucial: tabular-nums ensures all digits are the exact same width */
+  font-variant-numeric: tabular-nums;
 }
 
-.time-label {
-  font-size: 20px;
-  color: #888888; /* Labels stay grey for contrast, or change to #ffffff if you want */
-  letter-spacing: 2px;
+.separator {
+  font-size: 6vw;
+  font-weight: 300;
+  color: #444; 
+  margin-top: -2vw;
 }
 
-@media (max-width: 768px) {
-  .timer {
+.label {
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 5px;
+  color: #fff;
+  margin-top: 2rem;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+/* Responsive & Mobile Fixes */
+
+@media (max-width: 1024px) {
+  .timer-grid {
     flex-direction: column;
-    gap: 30px;
+    gap: 4vh;
   }
-  .time-value { font-size: 60px; }
-  .time-label { font-size: 16px; }
+  .separator {
+    display: none; /* Hide colons on mobile stack */
+  }
+  .time-group {
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center; /* Use center instead of baseline for better vertical balance */
+    padding: 0 10vw;
+  }
+  .number-wrapper {
+    height: 20vw;
+    width: 40vw; /* Give the number wrapper a width so it takes up consistent space */
+    justify-content: flex-start;
+  }
+  .number {
+    font-size: 18vw;
+  }
+  .label {
+    font-size: 1.2rem;
+    margin-top: 0;
+    width: 30vw;
+    text-align: right;
+  }
 }
