@@ -31,7 +31,7 @@ function App() {
 
   // Timer Logic & Number Rolling Animations
   useEffect(() => {
-    const startDate = new Date('2026-03-24T00:00:00').getTime()
+    const startDate = new Date('2026-06-28T00:00:00').getTime()
 
     const interval = setInterval(() => {
       const now = new Date().getTime()
