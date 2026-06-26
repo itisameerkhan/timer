@@ -16,7 +16,7 @@ function App() {
 
   useEffect(() => {
     // You can change this to test the confetti (e.g. set it exactly 100 days ago)
-    const startDate = new Date('2026-10-05T00:00:00').getTime()
+    const startDate = new Date('2026-06-28T00:00:00').getTime()
 
     const interval = setInterval(() => {
       const now = new Date().getTime()
