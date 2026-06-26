@@ -1,121 +1,89 @@
-.app-wrapper {
+/* ============================================
+   EXACT UI MATCH: BOLD, MINIMAL, DARK
+   ============================================ */
+
+.app {
   width: 100vw;
   height: 100vh;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #000;
-  color: #fff;
-  position: relative;
+  background-color: #000000;
   overflow: hidden;
+  padding: 1rem;
 }
 
 
 
-/* Header */
-header {
-  position: absolute;
-  top: 10%;
-  left: 50%;
-  transform: translateX(-50%);
-  text-align: center;
-}
-
-h1 {
-  font-size: 1rem;
-  font-weight: 400;
-  letter-spacing: 10px;
-  color: #666; /* Subtle gray */
-  margin: 0;
-  text-transform: uppercase;
-}
-
-/* Main Timer Grid */
-.timer-grid {
+.timer-container {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 2vw;
-  /* Slightly shift up to balance visual weight */
-  margin-top: -5vh; 
+  gap: 2vw; /* Space between numbers and colons */
+  z-index: 10;
 }
 
-.time-group {
+.time-unit {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  position: relative;
-  /* Fix the width so it doesn't jiggle when numbers change between 0 and 1 */
-  min-width: 14vw; 
-}
-
-.number-wrapper {
-  overflow: hidden; /* For odometer effect */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 14vw; 
+  gap: 4rem; /* Space between number and label */
 }
 
 .number {
-  font-size: 10vw;
-  font-weight: 900;
+  font-family: 'Montserrat', system-ui, sans-serif;
+  font-size: 11vw; /* Reduced from 15vw */
+  font-weight: 900; /* Ultra bold */
+  color: #ffffff;
   line-height: 1;
-  letter-spacing: -2px;
-  color: #fff;
-  will-change: transform, opacity;
-  /* Crucial: tabular-nums ensures all digits are the exact same width */
   font-variant-numeric: tabular-nums;
-}
-
-.separator {
-  font-size: 6vw;
-  font-weight: 300;
-  color: #444; 
-  margin-top: -2vw;
+  letter-spacing: -0.05em;
 }
 
 .label {
-  font-size: 0.9rem;
+  font-family: 'Montserrat', system-ui, sans-serif;
+  font-size: 1vw; /* Reduced from 1.2vw */
   font-weight: 700;
-  letter-spacing: 5px;
-  color: #fff;
-  margin-top: 2rem;
+  color: #ffffff;
+  letter-spacing: 0.4em; /* Very wide spacing */
   text-transform: uppercase;
-  text-align: center;
 }
 
-/* Responsive & Mobile Fixes */
+.colon {
+  font-family: 'Montserrat', system-ui, sans-serif;
+  font-size: 8vw; /* Reduced from 10vw */
+  font-weight: 900;
+  color: #333333; /* Dark grey */
+  transform: translateY(-1.5rem); /* Adjusted alignment for smaller font */
+}
 
+/* Responsive adjustments for mobile */
 @media (max-width: 1024px) {
-  .timer-grid {
+  .time-unit {
+    gap: 2rem;
+  }
+  .colon {
+    transform: translateY(-1rem);
+  }
+}
+
+@media (max-width: 768px) {
+  .timer-container {
     flex-direction: column;
-    gap: 4vh;
+    gap: 2.5rem;
   }
-  .separator {
-    display: none; /* Hide colons on mobile stack */
-  }
-  .time-group {
-    width: 100%;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center; /* Use center instead of baseline for better vertical balance */
-    padding: 0 10vw;
-  }
-  .number-wrapper {
-    height: 20vw;
-    width: 40vw; /* Give the number wrapper a width so it takes up consistent space */
-    justify-content: flex-start;
+  .time-unit {
+    gap: 0.5rem;
   }
   .number {
-    font-size: 18vw;
+    font-size: 25vw;
   }
   .label {
-    font-size: 1.2rem;
-    margin-top: 0;
-    width: 30vw;
-    text-align: right;
+    font-size: 3.5vw;
+    letter-spacing: 0.3em;
+  }
+  .colon {
+    display: none;
   }
 }
