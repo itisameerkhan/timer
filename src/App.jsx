@@ -35,14 +35,22 @@ function App() {
 
   const pad = (num) => String(num).padStart(2, '0');
 
+  const daysStr = String(elapsed.days).padStart(2, '0');
+
   const units = [
-    { value: pad(elapsed.days), label: 'DAYS' },
+    { value: daysStr, label: 'DAYS' },
     { value: pad(elapsed.hours), label: 'HRS' },
     { value: pad(elapsed.minutes), label: 'MIN' },
     { value: pad(elapsed.seconds), label: 'SEC' },
   ]
 
   const isMilestone = elapsed.days > 0 && elapsed.days % 100 === 0
+
+  const getTimerClass = () => {
+    if (daysStr.length >= 6) return 'timer-container timer-very-long';
+    if (daysStr.length >= 4) return 'timer-container timer-long';
+    return 'timer-container';
+  };
 
   return (
     <div className="app">
@@ -58,7 +66,7 @@ function App() {
         />
       )}
       
-      <main className="timer-container">
+      <main className={getTimerClass()}>
         {units.map((unit, index) => (
           <React.Fragment key={unit.label}>
             <div className="time-unit">
